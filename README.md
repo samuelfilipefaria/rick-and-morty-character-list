@@ -1,0 +1,1 @@
+# rick-and-morty-character-list-from-graphql-api

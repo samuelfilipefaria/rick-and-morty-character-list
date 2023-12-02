@@ -1,9 +1,17 @@
 <template>
-<img v-for="c in characters" :key="c.id" :src="c.image">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12" v-for="character in characters" :key="character.id">
+        <character-card :character-name="character.name" :character-image="character.image"/>
+      </div>
+    </div>
+  </div>
+  <br>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+import CharacterCard from '@/components/CharacterCard'
 
 export default {
   name: 'App',
@@ -13,6 +21,7 @@ export default {
     }
   },
   components: {
+    CharacterCard
   },
   methods: {
     async getCharacters() {
@@ -39,12 +48,10 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.character-card {
+  width: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
 </style>

@@ -1,42 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<img v-for="c in characters" :key="c.id" :src="c.image">
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import gql from 'graphql-tag'
 
 export default {
   name: 'App',
   data() {
     return {
-      characters: {}
+      characters: []
     }
   },
   components: {
-    HelloWorld
   },
-  apollo: {
-    characters: gql`query {
-      characters(page: 2, filter: { name: "rick" }) {
-        info {
-          count
-        }
-        results {
-          name
-        }
-      }
-      location(id: 1) {
-        id
-      }
-      episodesByIds(ids: [1, 2]) {
-        id
-      }
-    }`,
+  methods: {
+    async getCharacters() {
+      const response = await this.$apollo.query({
+        query: gql`
+          query characters {
+            characters(filter: { name: "rick" }) {
+              results {
+                id,
+                name,
+                image
+              }
+            }
+          }
+        `
+      });
+      this.characters = response.data.characters.results;
+    }
   },
   mounted() {
-    console.log(this.characters);
+    this.getCharacters();
   }
 }
 </script>

@@ -26,20 +26,28 @@ export default {
 <style scoped>
 .character-card {
   width: 18rem;
-  border-color: #7cf448;
-  border-width: 1px;
-  border-style: solid;
+  padding: 10px;
   border-radius: 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   background-color: #212529;
   color: #FFF;
-  box-shadow: 0px 0px 42px #7cf448;
+  box-shadow:
+    0px 0px 3.2px #7cf448,
+    0px 0px 6.8px #7cf448,
+    0px 0px 10.8px #7cf448,
+    0px 0px 15.9px #7cf448,
+    0px 0px 22.7px #7cf448,
+    0px 0px 28.1px #7cf448,
+    0px 0px 32.2px #7cf448,
+    0px 0px 35.7px #7cf448,
+    0px 0px 39px #7cf448,
+    0px 0px 42px #7cf448;
 }
 
 .character-image {
   width: 100%;
-  border-radius: none;
+  border-radius: 50%;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div class="container text-center"> 
+  <div class="container text-center">
+    <search-form/> 
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12" v-for="character in characters" :key="character.id">
         <character-card :character-name="character.name" :character-image="character.image"/>
@@ -11,6 +12,7 @@
 
 <script>
 import gql from 'graphql-tag'
+import SearchForm from './components/SearchForm'
 import CharacterCard from '@/components/CharacterCard'
 
 export default {
@@ -21,14 +23,15 @@ export default {
     }
   },
   components: {
-    CharacterCard
+    CharacterCard,
+    SearchForm
   },
   methods: {
     async getCharacters() {
       const response = await this.$apollo.query({
         query: gql`
           query characters {
-            characters(filter: { name: "rick" }) {
+            characters(filter: { name: "" }) {
               results {
                 id,
                 name,

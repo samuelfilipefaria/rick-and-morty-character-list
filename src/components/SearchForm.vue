@@ -1,15 +1,25 @@
 <template>
-  <form class="row my-5">
+  <form class="row my-5" @submit.prevent="sendSearchTerm()">
     <div class="col-lg-6 col-md-12 mx-auto">
-      <input type="text" class="form-control search-character-input bg-dark text-light" placeholder="Search a character...">
-      <button type="button" class="btn mt-5 text-dark search-character-button">Search!</button> 
+      <input type="text" class="form-control search-character-input bg-dark text-light" placeholder="Search a character..." v-model="searchTerm">
+      <button type="button" class="btn mt-5 text-dark search-character-button" @click="sendSearchTerm()">Search!</button> 
     </div>   
   </form> 
 </template>
 
 <script>
 export default {
-  name: "SearchForm"
+  name: "SearchForm",
+  data() {
+    return {
+      searchTerm: ""
+    }
+  },
+  methods: {
+    sendSearchTerm() {
+      this.$emit("searchCharacter", this.searchTerm);
+    }
+  }
 }
 </script>
 

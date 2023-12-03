@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center">
-    <search-form/> 
+    <search-form @searchCharacter="searchCharacter"/> 
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12" v-for="character in characters" :key="character.id">
         <character-card :character-name="character.name" :character-image="character.image"/>
@@ -27,11 +27,11 @@ export default {
     SearchForm
   },
   methods: {
-    async getCharacters() {
+    async searchCharacter(searchTerm) {
       const response = await this.$apollo.query({
         query: gql`
-          query characters {
-            characters(filter: { name: "" }) {
+          query characters($character: String!) {
+            characters(filter: { name: $character }) {
               results {
                 id,
                 name,
@@ -39,13 +39,14 @@ export default {
               }
             }
           }
-        `
+        `,
+        variables: { character: searchTerm },
       });
       this.characters = response.data.characters.results;
     }
   },
   mounted() {
-    this.getCharacters();
+    this.searchCharacter("");
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center">
+  <div class="container text-center"> 
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12" v-for="character in characters" :key="character.id">
         <character-card :character-name="character.name" :character-image="character.image"/>
@@ -48,10 +48,8 @@ export default {
 </script>
 
 <style>
-.character-card {
-  width: 18rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+* {
+  background-color: #212529;
+  color: #FFF;
 }
 </style>
